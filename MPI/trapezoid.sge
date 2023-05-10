@@ -1,0 +1,9 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N trapezoid
+#$ -o trapezoid.out
+#$ -e trapezoid.err
+#$ -pe orte 8
+
+mpirun -np 8 ./trapezoid

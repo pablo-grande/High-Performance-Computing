@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N ranks_run
+#$ -o ranks.out.12
+#$ -e ranks.err.12
+#$ -pe orte 12
+
+mpirun -np 12 ./ranks
+

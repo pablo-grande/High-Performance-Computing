@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N matrix_multiply
+#$ -o matrix.out
+#$ -e matrix.err
+#$ -pe orte 8
+
+# Run the MPI program
+mpirun -np 8 ./matrix_multiply

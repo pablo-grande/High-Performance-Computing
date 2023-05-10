@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}Performance evaluation: Sample parametric study}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Provide the SGE script(s) and the shell scripts (or methodology, e.g., program, command sequence) that you used to carry out the parametric study's executions systematically. Describe your choices (e.g., number of jobs launched vs. combinations in each job).}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Provide a plot of the execution time of the application with the requested input parameters. It is requested to include the average and standard deviation (or the percentiles/quartiles of your choice) of various (e.g., 5-10) executions.}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Queuing System and Scheduling}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}FCFS}{7}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}EASY-backfilling}{9}{subsection.2.2}%
+\contentsline {section}{\numberline {A}Data Files}{11}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}10.txt}{11}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}100.txt}{11}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}500.txt}{11}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}1000.txt}{12}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}1500.txt}{12}{subsection.A.5}%
+\contentsline {section}{\numberline {B}SGE files}{12}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}10.sge}{12}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}100.sge}{12}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}500.sge}{12}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}1000.sge}{13}{subsection.B.4}%
+\contentsline {subsection}{\numberline {B.5}1500.sge}{13}{subsection.B.5}%
+\contentsline {section}{\numberline {C}Scripts}{13}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}run.sh}{13}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}plot.py}{13}{subsection.C.2}%

@@ -1,0 +1,8 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N _10
+#$ -o /dev/null
+#$ -e sge.err
+
+/usr/bin/time -f %e -o results/10.txt ./app 10

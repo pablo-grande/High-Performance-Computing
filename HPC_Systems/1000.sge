@@ -1,0 +1,8 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N _1000
+#$ -o /dev/null
+#$ -e sge.err
+
+/usr/bin/time -f %e -o results/1000.txt ./app 1000

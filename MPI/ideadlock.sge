@@ -1,0 +1,10 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N ideadlock_run
+#$ -o ideadlock.out.2
+#$ -e ideadlock.err.2
+#$ -pe orte 2
+
+mpirun -np 2 ./ideadlock
+

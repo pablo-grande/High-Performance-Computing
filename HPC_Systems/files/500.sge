@@ -1,0 +1,8 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N _500
+#$ -o /dev/null
+#$ -e sge.err
+
+/usr/bin/time -f %e -o results/500.txt ./app 500

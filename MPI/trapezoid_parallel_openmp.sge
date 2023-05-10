@@ -1,0 +1,11 @@
+#!/bin/bash
+#$ -cwd
+#$ -S /bin/bash
+#$ -N trapezoid_$SLOTS_$THREADS
+#$ -o trapezoid_$SLOTS_$THREADS.out
+#$ -e trapezoid_$SLOTS_$THREADS.err
+#$ -pe orte $SLOTS
+#$ -pe openmp $THREADS
+
+export OMP_NUM_THREADS=$THREADS
+/usr/bin/time -f %e -o results/$SLOTS_$THREADS.txt mpirun -np $SLOTS -x OMP_NUM_THREADS ./trapezoid_parallel_openmp
