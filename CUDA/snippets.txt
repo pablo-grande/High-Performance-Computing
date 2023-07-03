@@ -1,0 +1,106 @@
+##########################################################################
+
+!nvcc --version
+
+##########################################################################
+
+!pip install git+https://github.com/andreinechaev/nvcc4jupyter.git
+%load_ext nvcc_plugin
+
+##########################################################################
+
+%%cu
+#include <stdio.h>
+
+__global__ void hello_kernel(void) {
+    printf("Hello world from the device!\n");
+}
+
+int main(void) {
+    printf("Hello world from the host!\n");
+    hello_kernel<<<1,1>>>();
+    cudaDeviceSynchronize();
+    return 0;
+}
+
+##########################################################################
+
+%%cu
+#include <stdio.h>
+
+const int N = 16;
+const int GRIDSIZE = 1;   //number of thread blocks
+const int BLOCKSIZE = 32; //number of threads per thread block
+
+__global__ void hello_decoder(char *a, int *b) {
+    a[threadIdx.x] += b[threadIdx.x]; 
+}
+
+int main()
+{
+    char a[N] = "Hello \0\0\0\0\0\0"; 
+    int b[N] = {15, 10, 6, 0, -11, 1,0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char *ad;
+    int *bd;
+    const int csize = N*sizeof(char); 
+    const int isize = N*sizeof(int);
+    
+    printf("%s", a);
+    
+    cudaMalloc( (void**)&ad, csize );
+    cudaMalloc( (void**)&bd, isize );
+    cudaMemcpy( ad, a, csize, cudaMemcpyHostToDevice ); 
+    cudaMemcpy( bd, b, isize, cudaMemcpyHostToDevice );
+    
+    hello_decoder<<<GRIDSIZE, BLOCKSIZE>>>(ad, bd);
+    cudaMemcpy( a, ad, csize, cudaMemcpyDeviceToHost ); 
+    cudaFree( ad );
+    cudaFree( bd );
+    
+    printf("%s\n", a);
+    return EXIT_SUCCESS; 
+}
+
+##########################################################################
+
+%%writefile exercise.cu
+
+#include <iostream>
+#include <math.h>
+#define VALUE 20
+#define PROBLEMSIZE 1000000000
+
+__global__ void add(float *x, float *y) {
+    //your code here!
+}
+
+int main(void) {
+    float *x, *y;
+    cudaMallocManaged(&x, PROBLEMSIZE*sizeof(float));
+    cudaMallocManaged(&y, PROBLEMSIZE*sizeof(float));
+    for (int i = 0; i < PROBLEMSIZE; i++) {
+        float val = (float)(i % VALUE);
+        x[i] = val;
+        y[i] = (VALUE-val);
+    }
+    add<<<1, 1>>>(x, y);
+    cudaDeviceSynchronize();
+    float error = 0.0f;
+    for (int i = 0; i < PROBLEMSIZE; i++)
+        error = fmax(error, fabs(y[i]-VALUE));
+    if (error != 0)
+        printf("Wrong result. Check your code, especially your kernel\n");
+    cudaFree(x);
+    cudaFree(y);
+    return 0;
+}
+
+##########################################################################
+
+!nvcc -o exercise exercise.cu
+
+##########################################################################
+
+!./exercise
+
+##########################################################################
